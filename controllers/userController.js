@@ -70,4 +70,46 @@ exports.getAllUsers = async (req, res) => {
 };
 
 // Login
-exports.loginController = () => { };
+exports.loginController = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // validation
+        if (!email || !password) {
+            return res.status(401).send({
+                success: false,
+                message: "please provide email & password"
+            });
+        }
+
+        const user = await userModel.findOne({ email });
+        if (!user) {
+            return res.status(401).send({
+                success: false,
+                message: "Email is not Registered"
+            });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).send({
+                success: false,
+                message: "invalid username or password"
+            });
+        }
+
+        return res.status(200).send({
+            success: true,
+            message: "Login Succesfully",
+            user
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send({
+            success: false,
+            message: 'Error in login callback',
+            error
+        });
+    }
+};
