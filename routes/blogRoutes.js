@@ -1,7 +1,14 @@
-const express = require('express');
-const { createBlogController, getAllBlogController, deleteBlogController, singleBlogController, updateBlogController } = require('../controllers/blogController');
+const express = require("express");
+const {
+  createBlogController,
+  getAllBlogController,
+  deleteBlogController,
+  singleBlogController,
+  updateBlogController,
+  userBlogController,
+} = require("../controllers/blogController");
 
-// Router Object 
+// Router Object
 const router = express.Router();
 
 // CREAT BLOG || POST
@@ -18,5 +25,8 @@ router.get("/get-blog/:id", singleBlogController);
 
 // DELETE BLOG || DELETE
 router.delete("/delete-blog/:id", deleteBlogController);
+
+// USER BLOG || GET
+router.get("/user-blog/:id", userBlogController);
 
 module.exports = router;
