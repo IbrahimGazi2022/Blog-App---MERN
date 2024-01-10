@@ -10,6 +10,9 @@
   "author": "ibrahim - the coder",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.3",
     "bcrypt": "^5.1.1",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
