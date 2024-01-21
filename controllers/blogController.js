@@ -49,9 +49,9 @@ exports.createBlogController = async (req, res) => {
 // GET ALL BLOG
 exports.getAllBlogController = async (req, res) => {
   try {
-    const blogs = await blogModel.find({});
+    const blogs = await blogModel.find({}).populate("user");
     if (!blogs) {
-      return res.status(200).send({
+      return res.status(400).send({
         success: false,
         message: "No Blogs Found",
       });
@@ -147,7 +147,7 @@ exports.deleteBlogController = async (req, res) => {
   }
 };
 
-// USER BLOG
+// GET USER BLOG
 exports.userBlogController = async (req, res) => {
   try {
     const userBlog = await userModel.findById(req.params.id).populate("blogs");

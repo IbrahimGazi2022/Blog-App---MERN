@@ -32,6 +32,7 @@ const Login = () => {
         password: inputs.password,
       });
       if (data.success) {
+        localStorage.setItem("userId", data?.user._id);
         dispatch(authAction.login());
         alert("User login Successfully");
         navigate("/");

@@ -11,7 +11,7 @@ const {
 // Router Object
 const router = express.Router();
 
-// CREAT BLOG || POST
+// CREATE BLOG || POST
 router.post("/create-blog", createBlogController);
 
 // ALL BLOGS || GET
